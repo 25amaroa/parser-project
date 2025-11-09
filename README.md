@@ -4,8 +4,8 @@ Angela Amaro, Sophi Blick, Seth, Sethery, Kody
 ## Project Description
 
 
-##Project requirments
+## Project requirments
 
-##How to use
+## How to use
 
-##Project Demo
+## Project Demo
