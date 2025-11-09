@@ -1,11 +1,11 @@
-# camelCaseJr
-Angela Amaro, Sophi Blick, Seth, Sethery, Kody
-
 ## Project Description
+
+## Authors
+Angela Amaro, Sophi Blick, Seth, Sethery, Kody
 
 
 ## Project requirments
 
-## How to use
+## How to use/run
 
 ## Project Demo
