@@ -44,6 +44,24 @@ class pythonGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by pythonGrammarParser#arithExpression.
+    def enterArithExpression(self, ctx:pythonGrammarParser.ArithExpressionContext):
+        pass
+
+    # Exit a parse tree produced by pythonGrammarParser#arithExpression.
+    def exitArithExpression(self, ctx:pythonGrammarParser.ArithExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by pythonGrammarParser#value.
+    def enterValue(self, ctx:pythonGrammarParser.ValueContext):
+        pass
+
+    # Exit a parse tree produced by pythonGrammarParser#value.
+    def exitValue(self, ctx:pythonGrammarParser.ValueContext):
+        pass
+
+
     # Enter a parse tree produced by pythonGrammarParser#blocks.
     def enterBlocks(self, ctx:pythonGrammarParser.BlocksContext):
         pass

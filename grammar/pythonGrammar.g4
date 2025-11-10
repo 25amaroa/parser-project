@@ -12,9 +12,20 @@ func : arithOperators   // deliverable #1
      | comments         // deliverable #3
      ;
 
+// Deliverable 1
 
-arithOperators : 'arith' ;
+// contines for each newline in file
+arithOperators : arithExpression (NEWLINE)* EOF ;
+
 assOperators : 'opp' ;
+
+
+arithExpression : arithExpression ('+' | '-' | '*' | '/' | '%') arithExpression
+                | '(' arithExpression ')'
+                | value
+                ;
+
+value : VAR | NUM ;
 
 
 // later problem
@@ -23,3 +34,13 @@ conStatement : 'con' ;
 // needs to support nested structures
 loops : 'loop' ;
 comments : 'comment' ;
+
+
+// variable naming
+VAR : [a-zA-Z_][a-zA-Z_0-9]* ;
+NUM : [0-9]+ ('.'[0-9]+)? ;
+
+
+// newline handling
+NEWLINE : ('\r'? '\n')+ ;
+WHITESPACE : [\t]+ -> skip ;
