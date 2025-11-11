@@ -1,3 +1,12 @@
 venv/
 .venv/
 __pycache__/
+grammar/pythonGrammarLexer.py
+grammar/pythonGrammarParser.py
+grammar/pythonGrammarVisitor.py
+grammar/pythonGrammarListener.py
+grammar/*.tokens
+grammar/*.interp
+.antlr
+.vscode/
+.DS_Store

@@ -14,9 +14,9 @@ func : arithOperators   // deliverable #1
 // Deliverable 1
 
 // contines for each newline in file
-arithOperators : arithExpression (NEWLINE)* EOF ;
+arithOperators : arithExpression (NEWLINE)*; // EOF Removed EOF so antlr doesn't expect it after every expression
 
-assOperators : assExpression (NEWLINE)* EOF ;
+assOperators : assExpression (NEWLINE)*; // EOF ;
 
 
 arithExpression : arithExpression ('+' | '-' | '*' | '/' | '%') arithExpression
@@ -28,13 +28,15 @@ assExpression : VAR assignOp arithExpression ;
 
 assignOp : '=' | '+=' | '-=' | '*=' | '/=' ;
 
-value : VAR | NUM ;
+value : VAR | NUM | STRING | arrayExp;
 
+// // This solves the array cases by looking for the brackets and values (including value: ...)
+arrayExp : '[' (value (',' value)*)? ']';
 
-// Deliverable 2
+// Deliverable 2              PLACEHOLDER
 blocks : 'block' ;
 conStatement : 'con' ;
-// Deliverable 3
+// Deliverable 3              PLACEHOLDER
 loops : 'loop' ;
 comments : 'comment' ;
 
@@ -42,10 +44,12 @@ comments : 'comment' ;
 VAR : [a-zA-Z_][a-zA-Z_0-9]* ;
 NUM : [0-9]+ ('.'[0-9]+)? ;
 
+// does single and doubled quotes... originally had just ''
+STRING : ('\'' [a-zA-Z0-9_]+ '\'' ) | ('"' [a-zA-Z0-9_]+ '"' ) ;
 
 // newline handling
 NEWLINE : ('\r'? '\n')+ ;
-WHITESPACE : [\t]+ -> skip ;
+WHITESPACE : [ \t\r ]+ -> skip; // I added /r here
 
 
 // COMMENTPOUND : '#' ;
