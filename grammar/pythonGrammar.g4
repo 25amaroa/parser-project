@@ -49,7 +49,6 @@ STRING : ('\'' [a-zA-Z0-9_]+ '\'' ) | ('"' [a-zA-Z0-9_]+ '"' ) ;
 
 // newline handling
 NEWLINE : ('\r'? '\n')+ ;
-WHITESPACE : [ \t\r ]+ -> skip; // I added /r here
-
+WHITESPACE : [ \t\r]+ -> skip; // I added /r here
 
 // COMMENTPOUND : '#' ;

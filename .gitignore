@@ -1,6 +1,7 @@
 venv/
 .venv/
 __pycache__/
+__init__.py
 grammar/pythonGrammarLexer.py
 grammar/pythonGrammarParser.py
 grammar/pythonGrammarVisitor.py
