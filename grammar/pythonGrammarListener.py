@@ -53,6 +53,24 @@ class pythonGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by pythonGrammarParser#assExpression.
+    def enterAssExpression(self, ctx:pythonGrammarParser.AssExpressionContext):
+        pass
+
+    # Exit a parse tree produced by pythonGrammarParser#assExpression.
+    def exitAssExpression(self, ctx:pythonGrammarParser.AssExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by pythonGrammarParser#assignOp.
+    def enterAssignOp(self, ctx:pythonGrammarParser.AssignOpContext):
+        pass
+
+    # Exit a parse tree produced by pythonGrammarParser#assignOp.
+    def exitAssignOp(self, ctx:pythonGrammarParser.AssignOpContext):
+        pass
+
+
     # Enter a parse tree produced by pythonGrammarParser#value.
     def enterValue(self, ctx:pythonGrammarParser.ValueContext):
         pass

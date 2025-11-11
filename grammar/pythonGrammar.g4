@@ -1,6 +1,5 @@
 grammar pythonGrammar;
 
-// change "+" to "*" later 
 program: (func)+ EOF;
 
 // project requirements
@@ -17,7 +16,7 @@ func : arithOperators   // deliverable #1
 // contines for each newline in file
 arithOperators : arithExpression (NEWLINE)* EOF ;
 
-assOperators : 'opp' ;
+assOperators : assExpression (NEWLINE)* EOF ;
 
 
 arithExpression : arithExpression ('+' | '-' | '*' | '/' | '%') arithExpression
@@ -25,16 +24,19 @@ arithExpression : arithExpression ('+' | '-' | '*' | '/' | '%') arithExpression
                 | value
                 ;
 
+assExpression : VAR assignOp arithExpression ;
+
+assignOp : '=' | '+=' | '-=' | '*=' | '/=' ;
+
 value : VAR | NUM ;
 
 
-// later problem
+// Deliverable 2
 blocks : 'block' ;
 conStatement : 'con' ;
-// needs to support nested structures
+// Deliverable 3
 loops : 'loop' ;
 comments : 'comment' ;
-
 
 // variable naming
 VAR : [a-zA-Z_][a-zA-Z_0-9]* ;
@@ -44,3 +46,6 @@ NUM : [0-9]+ ('.'[0-9]+)? ;
 // newline handling
 NEWLINE : ('\r'? '\n')+ ;
 WHITESPACE : [\t]+ -> skip ;
+
+
+// COMMENTPOUND : '#' ;
