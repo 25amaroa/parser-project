@@ -3,21 +3,21 @@ grammar pythonGrammar;
 program: (func)+ EOF;
 
 // project requirements
-func : arithOperators   // deliverable #1
-     | assOperators     // deliverable #1
-     | blocks           // deliverable #2
-     | conStatement     // deliverable #2
-     | loops            // deliverable #3
-     | comments         // deliverable #3
+func : arithOperators    // deliverable #1
+     | assOperators      // deliverable #1
+     | block             // deliverable #2
+     | compOp            // deliverable #2
+     | boolOp            // deliverable #2
+     | loops             // deliverable #3
+     | comments          // deliverable #3
      ;
 
-// Deliverable 1
+/*********************** Deliverable 1 ***********************/
 
 // contines for each newline in file
 arithOperators : arithExpression (NEWLINE)*; // EOF Removed EOF so antlr doesn't expect it after every expression
 
 assOperators : assExpression (NEWLINE)*; // EOF ;
-
 
 arithExpression : arithExpression ('+' | '-' | '*' | '/' | '%') arithExpression
                 | '(' arithExpression ')'
@@ -30,13 +30,23 @@ assignOp : '=' | '+=' | '-=' | '*=' | '/=' ;
 
 value : VAR | NUM | STRING | arrayExp;
 
-// // This solves the array cases by looking for the brackets and values (including value: ...)
+// This solves the array cases by looking for the brackets and values (including value: ...)
 arrayExp : '[' (value (',' value)*)? ']';
 
-// Deliverable 2              PLACEHOLDER
-blocks : 'block' ;
-conStatement : 'con' ;
-// Deliverable 3              PLACEHOLDER
+/*********************** Deliverable 2 ***********************/
+compOp : '==' | '!=' | '<' | '<=' | '>' | '>=' ;
+boolOp : 'and' | 'or' ;  // Can't include 'not' here becuase it's unary i.e. "not x"
+block : 'block' ;
+
+conExpression 
+     : conExpression boolOp conExpression
+     | conExpression compOp conExpression
+     | 'not' conExpression
+     | '(' conExpression ')'           
+     | value
+     ;
+
+/*********************** Deliverable 3 ***********************/
 loops : 'loop' ;
 comments : 'comment' ;
 

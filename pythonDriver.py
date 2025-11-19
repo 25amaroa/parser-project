@@ -6,7 +6,7 @@ from grammar.pythonGrammarParser import pythonGrammarParser
 
 
 
-file = "tests/project_deliverable_1.py"
+file = "tests/project_deliverable_2.py"
 with open(file, "r") as f:
         code = f.read()
 
