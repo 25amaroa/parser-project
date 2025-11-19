@@ -7,6 +7,7 @@ func : arithOperators    // deliverable #1
      | assOperators      // deliverable #1
      | block             // deliverable #2
      | compOp            // deliverable #2
+     | ifStatement
      | boolOp            // deliverable #2
      | loops             // deliverable #3
      | comments          // deliverable #3
@@ -36,7 +37,6 @@ arrayExp : '[' (value (',' value)*)? ']';
 /*********************** Deliverable 2 ***********************/
 compOp : '==' | '!=' | '<' | '<=' | '>' | '>=' ;
 boolOp : 'and' | 'or' ;  // Can't include 'not' here becuase it's unary i.e. "not x"
-block : 'block' ;
 
 conExpression 
      : conExpression boolOp conExpression
@@ -46,6 +46,32 @@ conExpression
      | value
      ;
 
+     //if / elif/ else
+ifStatement
+     : 'if' conExpression ':' NEWLINE block (elifStatement)* (elseStatement)? 
+     ;              
+
+elifStatement
+     : 'elif' conExpression ':' NEWLINE block
+     ;
+
+elseStatement
+     : 'else' ':' NEWLINE block
+     ;
+
+statement //this is to remove the chance for infinite recursion in block
+     : arithOperators                   //so block can't recursively call itself
+     | assOperators
+     | compOp
+     | ifStatement
+     | boolOp
+     | loops
+     | comments
+     ;
+
+block
+     : (statement)+
+     ;
 /*********************** Deliverable 3 ***********************/
 loops : 'loop' ;
 comments : 'comment' ;
