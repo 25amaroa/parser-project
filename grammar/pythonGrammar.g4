@@ -29,7 +29,13 @@ assExpression : VAR assignOp arithExpression ;
 
 assignOp : '=' | '+=' | '-=' | '*=' | '/=' ;
 
-value : VAR | NUM | STRING | arrayExp;
+value 
+     : VAR 
+     | NUM 
+     | '-' NUM 
+     | STRING 
+     | arrayExp
+     ;
 
 // This solves the array cases by looking for the brackets and values (including value: ...)
 arrayExp : '[' (value (',' value)*)? ']';
@@ -81,7 +87,10 @@ VAR : [a-zA-Z_][a-zA-Z_0-9]* ;
 NUM : [0-9]+ ('.'[0-9]+)? ;
 
 // does single and doubled quotes... originally had just ''
-STRING : ('\'' [a-zA-Z0-9_]+ '\'' ) | ('"' [a-zA-Z0-9_]+ '"' ) ;
+STRING 
+     : '\'' (~['\n])* '\''  
+     | '"' (~['\n])* '"'  
+     ;
 
 // newline handling
 NEWLINE : ('\r'? '\n')+ ;
