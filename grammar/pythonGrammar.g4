@@ -1,9 +1,9 @@
 grammar pythonGrammar;
 
-program: (func)+ EOF;
+program: (stmt)+ EOF;
 
 // project requirements
-func : arithOperators    // deliverable #1
+stmt : arithOperators    // deliverable #1
      | assOperators      // deliverable #1
      | block             // deliverable #2
      | compOp            // deliverable #2
