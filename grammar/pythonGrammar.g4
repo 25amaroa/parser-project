@@ -20,10 +20,17 @@ arithOperators : arithExpression (NEWLINE)*; // EOF Removed EOF so antlr doesn't
 
 assOperators : assExpression (NEWLINE)*; // EOF ;
 
-arithExpression : arithExpression ('+' | '-' | '*' | '/' | '%') arithExpression
-                | '(' arithExpression ')'
-                | value
+arithExpression : arith (('+' | '-' ) arith)*
                 ;
+arith
+     : factor (('*' | '/' | '%') factor)*
+     ;
+
+// () will be highest presendence
+factor 
+     : '(' arithExpression ')'
+     | value
+     ;
 
 assExpression : VAR assignOp arithExpression ;
 

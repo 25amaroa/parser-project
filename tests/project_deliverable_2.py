@@ -46,3 +46,7 @@ elif (not flag) and var3 > 10:
 	flag = False
 else:
 	data = -1
+
+
+
+a = (1 + 3) * (1 + 3)
