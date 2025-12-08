@@ -3,14 +3,8 @@ grammar pythonGrammar;
 program: (stmt)+ EOF;
 
 // project requirements
-stmt : arithOperators    // deliverable #1
-     | assOperators      // deliverable #1
-     | block             // deliverable #2
-     | compOp            // deliverable #2
-     | ifStatement
-     | boolOp            // deliverable #2
-     | loops             // deliverable #3
-     | comments          // deliverable #3
+stmt : simpleStmt
+     | compoundStmt
      ;
 
 /*********************** Deliverable 1 ***********************/
@@ -59,6 +53,19 @@ conExpression
      | value
      ;
 
+compoundStmt
+     : ifStatement
+     | loops // Assuming 'loops' also contains a block allows us to nest (what we lost points for)
+     ;
+
+simpleStmt
+     : arithOperators 
+     | assOperators
+     | compOp 
+     | boolOp 
+     | comments
+     ;
+
      //if / elif/ else
 ifStatement
      : 'if' conExpression ':' NEWLINE block (elifStatement)* (elseStatement)? 
@@ -72,18 +79,8 @@ elseStatement
      : 'else' ':' NEWLINE block
      ;
 
-statement //this is to remove the chance for infinite recursion in block
-     : arithOperators                   //so block can't recursively call itself
-     | assOperators
-     | compOp
-     | ifStatement
-     | boolOp
-     | loops
-     | comments
-     ;
-
 block
-     : (statement)+
+     : (simpleStmt)+
      ;
 /*********************** Deliverable 3 ***********************/
 loops : 'loop' ;
