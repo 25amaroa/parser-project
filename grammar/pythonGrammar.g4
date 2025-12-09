@@ -97,7 +97,7 @@ block
      ;
 /*********************** Deliverable 3 ***********************/
 loops : LOOP ;
-comments : COMMENT_KW ;
+comments : COMMENT ;
 
 // The point of these tests are now to create lexing rules for our parser
 // the order here matters when lexing so i've laid out the different sections we need
@@ -107,7 +107,7 @@ IF    : 'if';
 ELIF  : 'elif';
 ELSE  : 'else';
 LOOP  : 'loop';
-COMMENT_KW : 'comment';
+COMMENT : 'comment';
 TRUE  : 'True';
 FALSE : 'False';
 AND   : 'and';
