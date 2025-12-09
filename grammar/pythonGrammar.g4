@@ -36,6 +36,9 @@ value
      | '-' NUM 
      | STRING 
      | arrayExp
+     | TRUE
+     | FALSE
+     | NONE
      ;
 
 // This solves the array cases by looking for the brackets and values (including value: ...)
@@ -55,6 +58,8 @@ conExpression
 
 compoundStmt
      : ifStatement
+     | whileStatement
+     | forStatement
      | loops // Assuming 'loops' also contains a block allows us to nest (what we lost points for)
      ;
 
@@ -79,25 +84,55 @@ elseStatement
      : 'else' ':' NEWLINE block
      ;
 
+whileStatement
+     : WHILE conExpression ':' NEWLINE block
+     ;
+
+forStatement
+     : FOR VAR IN VAR ':' NEWLINE block
+     ;
+
 block
      : (simpleStmt)+
      ;
 /*********************** Deliverable 3 ***********************/
-loops : 'loop' ;
-comments : 'comment' ;
+loops : LOOP ;
+comments : COMMENT_KW ;
+
+// The point of these tests are now to create lexing rules for our parser
+// the order here matters when lexing so i've laid out the different sections we need
+
+// keywords
+IF    : 'if';
+ELIF  : 'elif';
+ELSE  : 'else';
+LOOP  : 'loop';
+COMMENT_KW : 'comment';
+TRUE  : 'True';
+FALSE : 'False';
+AND   : 'and';
+OR    : 'or';
+NOT   : 'not';
+NONE  : 'None';
+WHILE : 'while'; 
+FOR   : 'for';   
+IN    : 'in';    
+RANGE : 'range'; 
+
+// comment types
+SINGLE_LINE_COMMENT : '#' ~[\r\n]* -> skip;
+MULTI_LINE_COMMENT : '\'\'\'' ( options {greedy=false;} : . )* '\'\'\'' -> skip;
 
 // variable naming
 VAR : [a-zA-Z_][a-zA-Z_0-9]* ;
 NUM : [0-9]+ ('.'[0-9]+)? ;
 
-// does single and doubled quotes... originally had just ''
+// strings
 STRING 
-     : '\'' (~['\n])* '\''  
-     | '"' (~['\n])* '"'  
+     : '"' ( ~["\r\n] )* '"'     
+     | '\'' ( ~['\r\n] )* '\''   
      ;
 
-// newline handling
+// whitespace handling
 NEWLINE : ('\r'? '\n')+ ;
-WHITESPACE : [ \t\r]+ -> skip; // I added /r here
-
-// COMMENTPOUND : '#' ;
+WHITESPACE : [ \t\r]+ -> skip;
