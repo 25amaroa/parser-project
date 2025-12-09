@@ -2,7 +2,7 @@
 Parser project for Principles of Programming Languages
 
 ## Authors
-Angela Amaro, Sophi Blick, Seth Keenen, Seth Ek, Kody McNamara
+Angela Amaro, Sophie Blick, Seth Keenen, Seth Ek, Kody McNamara
 
 
 ## Project requirments
