@@ -46,12 +46,12 @@ arrayExp : '[' (value (',' value)*)? ']';
 
 /*********************** Deliverable 2 ***********************/
 compOp : '==' | '!=' | '<' | '<=' | '>' | '>=' ;
-boolOp : 'and' | 'or' ;  // Can't include 'not' here becuase it's unary i.e. "not x"
+boolOp : AND | OR ;  // Can't include 'not' here becuase it's unary i.e. "not x"
 
 conExpression 
      : conExpression boolOp conExpression
      | conExpression compOp conExpression
-     | 'not' conExpression
+     | NOT conExpression
      | '(' conExpression ')'           
      | value
      ;
@@ -73,15 +73,15 @@ simpleStmt
 
      //if / elif/ else
 ifStatement
-     : 'if' conExpression ':' NEWLINE block (elifStatement)* (elseStatement)? 
+     : IF conExpression ':' NEWLINE block (elifStatement)* (elseStatement)? 
      ;              
 
 elifStatement
-     : 'elif' conExpression ':' NEWLINE block
+     : ELIF conExpression ':' NEWLINE block
      ;
 
 elseStatement
-     : 'else' ':' NEWLINE block
+     : ELSE ':' NEWLINE block
      ;
 
 whileStatement
@@ -121,7 +121,7 @@ RANGE : 'range';
 
 // comment types
 SINGLE_LINE_COMMENT : '#' ~[\r\n]* -> skip;
-MULTI_LINE_COMMENT : '\'\'\'' ( options {greedy=false;} : . )* '\'\'\'' -> skip;
+MULTIPLE_LINE_COMMENT : '\'\'\'' ( options {greedy=false;} : . )* '\'\'\'' -> skip;
 
 // variable naming
 VAR : [a-zA-Z_][a-zA-Z_0-9]* ;
