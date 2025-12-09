@@ -39,10 +39,17 @@ value
      | '-' NUM 
      | STRING 
      | arrayExp
+     | rangeFunc
      | TRUE
      | FALSE
      | NONE
      ;
+
+// I added in this to handle range calls in the for loops
+// I'm assuming we only need to handle the two cases shown in the assignment 
+rangeFunc : RANGE '(' arithExpression ',' arithExpression ')'    // range (start, end)
+          | RANGE '(' arithExpression ')'                        // range (end)
+          ;
 
 // This solves the array cases by looking for the brackets and values (including value: ...)
 arrayExp : '[' (value (',' value)*)? ']';
@@ -91,11 +98,11 @@ whileStatement
      ;
 
 forStatement
-     : FOR VAR IN VAR ':' NEWLINE block
+     : FOR VAR IN arithExpression ':' NEWLINE block
      ;
 
 block
-     : (simpleStmt)+
+     : (simpleStmt | compoundStmt)+
      ;
 /*********************** Deliverable 3 ***********************/
 loops : LOOP ;
