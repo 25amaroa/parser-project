@@ -71,7 +71,6 @@ simpleStmt
      | assOperators
      | compOp 
      | boolOp 
-     | comments
      ;
 
      //if / elif/ else
@@ -100,7 +99,8 @@ block
      ;
 /*********************** Deliverable 3 ***********************/
 loops : LOOP ;
-comments : COMMENT ;
+// I think this is needed 
+//comments : COMMENT ;
 
 // The point of these tests are now to create lexing rules for our parser
 // the order here matters when lexing so i've laid out the different sections we need
@@ -110,7 +110,7 @@ IF    : 'if';
 ELIF  : 'elif';
 ELSE  : 'else';
 LOOP  : 'loop';
-COMMENT : 'comment';
+// COMMENT : 'comment';
 TRUE  : 'True';
 FALSE : 'False';
 AND   : 'and';
@@ -123,8 +123,11 @@ IN    : 'in';
 RANGE : 'range'; 
 
 // comment types - reference https://stackoverflow.com/questions/4676827/how-can-i-access-blocks-of-text-as-an-attribute-that-are-matched-using-a-greedy
+// skip I think matches, unless he wants this apart of the tree which I don't think makes sense
+// if you use skip we can remove the above calls for comment since skip just handles it by ignoring
+// I was wondering why this wasn't working but looking at your link this method was used in ATLR3? -> warning(131): pythonGrammar.g4:130:64: greedy block ()* contains wildcard; the non-greedy syntax ()*? may be preferred
 SINGLE_LINE_COMMENT : '#' ~[\r\n]* -> skip;
-MULTIPLE_LINE_COMMENT : '\'\'\'' ( options {greedy=false;} : . )* '\'\'\'' -> skip;
+MULTIPLE_LINE_COMMENT : '\'\'\'' .*? '\'\'\'' -> skip;
 
 // variable naming
 VAR : [a-zA-Z_][a-zA-Z_0-9]* ;
