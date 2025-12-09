@@ -11,3 +11,4 @@ grammar/*.interp
 .antlr
 .vscode/
 .DS_Store
+tree
