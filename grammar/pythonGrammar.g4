@@ -20,8 +20,11 @@ arithOperators : arithExpression (NEWLINE)*; // EOF Removed EOF so antlr doesn't
 
 assOperators : assExpression (NEWLINE)*; // EOF ;
 
+
+// lowest
 arithExpression : arith (('+' | '-' ) arith)*
                 ;
+// 2nd highest                 
 arith
      : factor (('*' | '/' | '%') factor)*
      ;
