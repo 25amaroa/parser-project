@@ -119,7 +119,7 @@ FOR   : 'for';
 IN    : 'in';    
 RANGE : 'range'; 
 
-// comment types
+// comment types - reference https://stackoverflow.com/questions/4676827/how-can-i-access-blocks-of-text-as-an-attribute-that-are-matched-using-a-greedy
 SINGLE_LINE_COMMENT : '#' ~[\r\n]* -> skip;
 MULTIPLE_LINE_COMMENT : '\'\'\'' ( options {greedy=false;} : . )* '\'\'\'' -> skip;
 
