@@ -4,9 +4,9 @@ Parser project for Principles of Programming Languages
 ## Authors
 Angela Amaro, Sophie Blick, Seth Keenen, Seth Ek, Kody McNamara
 
-
 ## Project requirments
-A device capable of running Python atm
+* Install Python: https://www.python.org/downloads/ 
+* Install graphviz: https://graphviz.org/download/
 
 ## How to get started
 ```bash
@@ -23,4 +23,5 @@ antlr -Dlanguage=Python3 -visitor -no-listener grammar/pythonGrammar.g4
 # Run the program
 python3 pythonDriver.py
 ```
-## Project Demo
+## Parse Tree:
+![Tree](tree.jpg)
