@@ -23,34 +23,8 @@ def printTree(node, parser, level=0):
 
         return result
 
-# 
-def drawTree(graph, root, parser):
-    stack = [(root, None)]   # (current, parentID)
 
-    while stack:
-        node, parentID = stack.pop()
-        nodeID = str(id(node))
-
-        # Create label
-        if isinstance(node, TerminalNode):
-            label = f"'{node.getText()}'"
-        else:
-            ruleName = parser.ruleNames[node.getRuleIndex()]
-            label = ruleName
-
-        graph.node(nodeID, label=label)
-
-        # Connect to parent 
-        if parentID:
-            graph.edge(parentID, nodeID)
-
-        # You have to do it reversed to keep left to right 
-            child = node.getChild(i)
-            stack.append((child, nodeID))
-
-
-
-file = "tests/project_deliverable_2.py"
+file = "tests/project_deliverable_3.py"
 with open(file, "r") as f:
         code = f.read()
 
@@ -64,8 +38,8 @@ parser = pythonGrammarParser(stream)
 tree = parser.program() 
 
 
-print("\n Slightly more easy to read:\n")
-print(printTree(tree, parser))
+# print("\nSlightly more easy to read:\n")
+# print(printTree(tree, parser))
 
 print("\n Raw Tree version:\n")
 print(tree.toStringTree(recog=parser), "\n")
