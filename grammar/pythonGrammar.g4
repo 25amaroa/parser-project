@@ -69,6 +69,8 @@ conExpression
 // this was recursively calling if and made the other two nest I think 
 compoundStmt
      : ifStatement
+     | elifStatement
+     | elseStatement
      | whileStatement
      | forStatement
      | loops // Assuming 'loops' also contains a block allows us to nest (what we lost points for)
@@ -82,14 +84,17 @@ simpleStmt
      ;
 
 //if / elif/ else
-ifStatement : IF conExpression ':' NEWLINE block (ELIF conExpression ':' NEWLINE block)* (ELSE ':' NEWLINE block)? ;
+// below is material over indent and dedent
+// https://docs.python.org/3/reference/lexical_analysis.html#indentation
+
+ifStatement : IF conExpression ':' NEWLINE block;
 
 /*
 ifStatement
      : IF conExpression ':' NEWLINE block (elifStatement)* (elseStatement)? 
      ;              
 
-
+*/
 elifStatement
      : ELIF conExpression ':' NEWLINE block
      ;
@@ -97,7 +102,7 @@ elifStatement
 elseStatement
      : ELSE ':' NEWLINE block
      ;
-*/
+
 
 whileStatement
      : WHILE conExpression ':' NEWLINE block
@@ -108,7 +113,7 @@ forStatement
      ;
 
 block
-     : INDENT (simpleStmt | compoundStmt)+  
+     : (INDENT (simpleStmt | compoundStmt))+  
      ;
 /*********************** Deliverable 3 ***********************/
 loops : LOOP ;
@@ -154,7 +159,8 @@ STRING
      ;
 
 // whitespace handling
+//INDENT: ('\t' | '    ')+ ;
 NEWLINE : ('\r'? '\n')+ ;
+INDENT: ('\t' | '    ')+ ;
 WHITESPACE : [ \t\r]+ -> skip;
-INDENT: '\t'+ ;
-//UNDENT
+//INDENT: ('\t' | '    ')+ ; if this is all that fixes it I'm commiting

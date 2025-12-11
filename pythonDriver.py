@@ -50,7 +50,7 @@ def drawTree(graph, root, parser):
 
 
 
-file = "tests/project_deliverable_2.py"
+file = "tests/project_deliverable_3.py"
 with open(file, "r") as f:
         code = f.read()
 
@@ -64,8 +64,8 @@ parser = pythonGrammarParser(stream)
 tree = parser.program() 
 
 
-print("\nSlightly more easy to read:\n")
-print(printTree(tree, parser))
+#print("\nSlightly more easy to read:\n")
+#print(printTree(tree, parser))
 
 print("\n Raw Tree version:\n")
 print(tree.toStringTree(recog=parser), "\n")
