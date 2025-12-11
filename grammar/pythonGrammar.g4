@@ -66,6 +66,7 @@ conExpression
      | value
      ;
 
+// this was recursively calling if and made the other two nest I think 
 compoundStmt
      : ifStatement
      | whileStatement
@@ -80,10 +81,14 @@ simpleStmt
      | boolOp 
      ;
 
-     //if / elif/ else
+//if / elif/ else
+ifStatement : IF conExpression ':' NEWLINE block (ELIF conExpression ':' NEWLINE block)* (ELSE ':' NEWLINE block)? ;
+
+/*
 ifStatement
      : IF conExpression ':' NEWLINE block (elifStatement)* (elseStatement)? 
      ;              
+
 
 elifStatement
      : ELIF conExpression ':' NEWLINE block
@@ -92,6 +97,7 @@ elifStatement
 elseStatement
      : ELSE ':' NEWLINE block
      ;
+*/
 
 whileStatement
      : WHILE conExpression ':' NEWLINE block
@@ -102,7 +108,7 @@ forStatement
      ;
 
 block
-     : (simpleStmt | compoundStmt)+
+     : INDENT (simpleStmt | compoundStmt)+  
      ;
 /*********************** Deliverable 3 ***********************/
 loops : LOOP ;
@@ -129,6 +135,7 @@ FOR   : 'for';
 IN    : 'in';    
 RANGE : 'range'; 
 
+
 // comment types - reference https://stackoverflow.com/questions/4676827/how-can-i-access-blocks-of-text-as-an-attribute-that-are-matched-using-a-greedy
 // skip I think matches, unless he wants this apart of the tree which I don't think makes sense
 // if you use skip we can remove the above calls for comment since skip just handles it by ignoring
@@ -149,3 +156,5 @@ STRING
 // whitespace handling
 NEWLINE : ('\r'? '\n')+ ;
 WHITESPACE : [ \t\r]+ -> skip;
+INDENT: '\t'+ ;
+//UNDENT
